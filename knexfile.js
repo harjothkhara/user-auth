@@ -4,8 +4,7 @@ require('dotenv').config();
 const pgUser = process.env.PG_USER;
 const pgDb = process.env.PG_DB;
 
-const localPgConnection = `postgres://${pgUser}@localhost/${pgDb}`;
-const herokuConnection = process.env.DATABASE_URL + '?ssl=true';
+// const localPgConnection = `postgres://${pgUser}@localhost/${pgDb}`;
 
 // knex migrate:latest --env production
 // knex seed:run --env production
@@ -37,7 +36,7 @@ module.exports = {
   },
   production: {
     client: 'pg', // npm i pg
-    connection: herokuConnection,
+    connection: process.env.DATABASE_URL + '?ssl=true'
     pool: {
       // config connections between app and server
       min: 2,
